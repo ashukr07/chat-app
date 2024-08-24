@@ -2,10 +2,13 @@ import { useEffect, useRef } from "react";
 import useGetMessages from "../../hooks/useGetMessages"
 import MessageSkeleton from "../skeletons/MessageSkeleton";
 import Message from "./Message"
+import useListenMessages from "../../hooks/useListenMessages";
 
 
 const Messages = () => {
-  const {loading,messages} =useGetMessages();
+  const {loading,messages = []} =useGetMessages();
+  
+  useListenMessages()
   //console.log("messages in components: ",messages)
   const lastMessageRef = useRef();
   useEffect(()=>{
@@ -14,6 +17,9 @@ const Messages = () => {
     },100)
     
   },[messages])
+
+  console.log("mgfcf",messages);
+  
 
 
   return (
